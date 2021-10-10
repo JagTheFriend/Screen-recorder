@@ -79,7 +79,6 @@ async function selectSource(source) {
  * Captures all the recoded chunks
  */
 function handleDataAvailable(e) {
-    console.log()
     recordedChunks.push(e.data);
 }
 

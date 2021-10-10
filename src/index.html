@@ -10,19 +10,27 @@
 </head>
 
 <body class="content">
-    <h1>A simple screen recorder</h1>
-
+    <h2>A simple screen recorder</h2>
     <video></video>
+
     <!-- The start recording button -->
     <button id="startBtn" class="button is-primary">Start</button>
+
     <!-- The stop recording button -->
     <button id="stopBtn" class="button is-warning">Stop</button>
 
     <hr />
     <!-- Allows the user to select a video source -->
-    <button id="videoSelectBtn" class="button is-text">
-        Choose a Video Source
-    </button>
+    <div class="dropdown is-hoverable">
+        <div class="dropdown-trigger">
+            <button id="videoSelectBtn" class="button is-text" aria-haspopup="true" aria-controls="dropdown-menu">
+                <span>Choose a Video Source</span>
+                <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </button>
+        </div>
+    </div>
 </body>
 
 </html>
