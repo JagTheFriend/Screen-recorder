@@ -1,8 +1,8 @@
 {
   "name": "tron-forge",
-  "productName": "tron-forge",
+  "productName": "screen-recorder",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "A simple description",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -12,7 +12,7 @@
     "lint": "echo \"No linting configured\""
   },
   "keywords": [],
-  "author": "jeffd23",
+  "author": "JagTheFriend",
   "license": "MIT",
   "config": {
     "forge": {
@@ -21,7 +21,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "tron_forge"
+            "name": "screen_recorder"
           }
         },
         {
