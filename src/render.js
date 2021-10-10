@@ -101,7 +101,5 @@ async function handleStop(e) {
     });
     if (filePath) {
         writeFile(filePath, buffer, () => alert("Video has been saved successfully!"));
-    } else {
-        alert("Please provide a valid file path!!");
     }
 }
