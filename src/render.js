@@ -16,7 +16,7 @@ async function getVideoSources() {
         types: ["window", "screen"]
     });
     // Create a UI element
-    // Build native menus directly into the code
+    // Build a native menu directly into the code
     const videoOptionsMenu = Menu.buildFromTemplate(
         inputSources.map(source => {
             return {
@@ -26,4 +26,26 @@ async function getVideoSources() {
         })
     );
     videoOptionsMenu.popup();
+}
+
+/**
+ * Change the videoSource window to record
+ */
+async function selectSource(source) {
+    videoSelectBtn.innerText = source.name;
+    const constraints = {
+        audio: false,
+        video: {
+            mandatory: {
+                chromeMediaSource: 'desktop',
+                chromeMediaSourceId: source.id
+            }
+        }
+    };
+    // Create a Stream
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+    // Preview the source in a video element
+    videoElement.srcObject = stream;
+    videoElement.play();
 }
