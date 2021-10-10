@@ -1,3 +1,9 @@
+# Database
+data.csv
+
+# Vscode
+.vscode/
+
 # Logs
 logs
 *.log
