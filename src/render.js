@@ -1,11 +1,27 @@
 const { desktopCapturer, remote } = require("electron");
-const { Menu } = remote;
+const { dialog, Menu } = remote;
+const { writeFile } = require('fs');
 
+let mediaRecorder; // MediaRecorder instance to capture footage
+const recordedChunks = []
 const videoElement = document.querySelector("video");
-const startBtn = document.getElementById("startBtn");
-const stopBtn = document.getElementById("stopBtn");
+
 const videoSelectBtn = document.getElementById("videoSelectBtn");
 videoSelectBtn.onclick = getVideoSources;
+
+const startBtn = document.getElementById("startBtn");
+startBtn.onclick = e => {
+    mediaRecorder.start();
+    startBtn.classList.add('is-danger');
+    startBtn.innerText = 'Recording';
+};
+
+const stopBtn = document.getElementById("stopBtn");
+stopBtn.onclick = e => {
+    mediaRecorder.stop();
+    startBtn.classList.remove('is-danger');
+    startBtn.innerText = 'Start';
+};
 
 /**
  * Get all the available screens onto the user's system
@@ -46,6 +62,46 @@ async function selectSource(source) {
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
 
     // Preview the source in a video element
+    // Updates the UI
     videoElement.srcObject = stream;
     videoElement.play();
+
+    // Create the Media Recorder
+    const options = { mimeType: 'video/webm; codecs=vp9' };
+    mediaRecorder = new MediaRecorder(stream, options);
+
+    // Register Event Handlers
+    mediaRecorder.ondataavailable = handleDataAvailable;
+    mediaRecorder.onstop = handleStop;
+}
+
+/**
+ * Captures all the recoded chunks
+ */
+function handleDataAvailable(e) {
+    console.log()
+    recordedChunks.push(e.data);
+}
+
+/**
+ * Saves the video file on stop
+ */
+async function handleStop(e) {
+    // A `Blob` is a data structure used for handling raw data
+    const blob = new Blob(recordedChunks, {
+        type: 'video/webm; codecs=vp9'
+    });
+    // A buffer is required instead of a blob in order to convert the data
+    // into useable format to be played back as a video
+    const buffer = Buffer.from(await blob.arrayBuffer());
+    // Ask the user where to save the file
+    const { filePath } = await dialog.showSaveDialog({
+        buttonLabel: 'Save video',
+        defaultPath: `vid-${Date.now()}.webm`
+    });
+    if (filePath) {
+        writeFile(filePath, buffer, () => alert("Video has been saved successfully!"));
+    } else {
+        alert("Please provide a valid file path!!");
+    }
 }
