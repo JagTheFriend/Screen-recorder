@@ -11,6 +11,7 @@ videoSelectBtn.onclick = getVideoSources;
 
 const startBtn = document.getElementById("startBtn");
 startBtn.onclick = e => {
+    videoElement.style.width = "70%";
     mediaRecorder.start();
     startBtn.classList.add('is-danger');
     startBtn.innerText = 'Recording';
@@ -18,6 +19,7 @@ startBtn.onclick = e => {
 
 const stopBtn = document.getElementById("stopBtn");
 stopBtn.onclick = e => {
+    videoElement.style.width = "60%";
     mediaRecorder.stop();
     startBtn.classList.remove('is-danger');
     startBtn.innerText = 'Start';
