@@ -14,7 +14,8 @@ const createWindow = () => {
         webPreferences: {
             nodeIntegration: true
         },
-        autoHideMenuBar: true
+        autoHideMenuBar: true,
+        show: false // the application won't show up until everything is ready
     });
     mainWindow.on("ready-to-show", mainWindow.show);
     // and load the index.html of the app.
