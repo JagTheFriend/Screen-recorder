@@ -3,6 +3,7 @@ const { dialog, Menu } = remote;
 const { writeFile } = require('fs');
 
 let mediaRecorder; // MediaRecorder instance to capture footage
+var isRecording = false
 const recordedChunks = []
 const videoElement = document.querySelector("video");
 
@@ -13,7 +14,7 @@ const startBtn = document.getElementById("startBtn");
 startBtn.onclick = e => {
     // Check whether a video source has been selected
     // before changing the style of the button etc
-    if (Boolean(recordedChunks.length)) {
+    if (isRecording) {
         videoElement.style.width = "70%";
         startBtn.style.width = "100px";
         mediaRecorder.start();
@@ -26,6 +27,7 @@ startBtn.onclick = e => {
 
 const stopBtn = document.getElementById("stopBtn");
 stopBtn.onclick = e => {
+    isRecording = false;
     videoElement.style.width = "60%";
     mediaRecorder.stop();
     startBtn.classList.remove('is-danger');
@@ -58,6 +60,7 @@ async function getVideoSources() {
  * Change the videoSource window to record
  */
 async function selectSource(source) {
+    isRecording = true;
     videoSelectBtn.innerHTML = `&nbsp;&nbsp;&nbsp;${source.name}&nbsp;&nbsp;&nbsp;`;
     const constraints = {
         audio: false,
