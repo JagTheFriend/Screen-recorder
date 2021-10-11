@@ -17,7 +17,10 @@ const createWindow = () => {
         autoHideMenuBar: true,
         show: false // the application won't show up until everything is ready
     });
+    // show the window when everything is ready
     mainWindow.on("ready-to-show", mainWindow.show);
+    // maximize window
+    mainWindow.maximize();
     // and load the index.html of the app.
     mainWindow.loadFile(path.join(__dirname, 'index.html'));
     // Open the DevTools.
