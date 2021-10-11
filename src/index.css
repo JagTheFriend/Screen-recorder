@@ -1,5 +1,6 @@
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
     margin: 0;
     text-align: center;
     padding-top: 20px;
@@ -16,20 +17,67 @@ video {
     color: #fff;
     border-radius: 5px;
     padding: 10px 25px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
+    /* font-family: "Lato", sans-serif; */
+    /* font-weight: 500; */
     background: transparent;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     display: inline-block;
-    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px 0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+        7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
     outline: none;
 }
 
-/* 7 */
+.btn-5 {
+    width: 60px;
+    /* height: 40px; */
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    background: lightblue;
+    /* background: linear-gradient(
+        0deg,
+        rgba(255, 27, 0, 1) 0%,
+        rgba(251, 75, 2, 1) 100%
+    ); */
+}
+.btn-5:hover {
+    color: #f0094a;
+    background: transparent;
+    box-shadow: none;
+}
+.btn-5:before,
+.btn-5:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: #f0094a;
+    box-shadow: -1px -1px 5px 0px #fff, 7px 7px 20px 0px #0003,
+        4px 4px 5px 0px #0002;
+    transition: 400ms ease all;
+}
+.btn-5:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+.btn-5:hover:before,
+.btn-5:hover:after {
+    width: 100%;
+    transition: 0.3s ease all;
+}
+
 .btn-7 {
-    background: linear-gradient(0deg, rgba(255, 151, 0, 1) 0%, rgba(251, 75, 2, 1) 100%);
+    background: linear-gradient(
+        0deg,
+        rgba(255, 151, 0, 1) 0%,
+        rgba(251, 75, 2, 1) 100%
+    );
     line-height: 42px;
     padding: 0;
     border: none;
@@ -48,7 +96,9 @@ video {
     right: 0;
     bottom: 0;
     background: rgba(251, 75, 2, 1);
-    box-shadow: -7px -7px 20px 0px rgba(255, 255, 255, .9), -4px -4px 5px 0px rgba(255, 255, 255, .9), 7px 7px 20px 0px rgba(0, 0, 0, .2), 4px 4px 5px 0px rgba(0, 0, 0, .3);
+    box-shadow: -7px -7px 20px 0px rgba(255, 255, 255, 0.9),
+        -4px -4px 5px 0px rgba(255, 255, 255, 0.9),
+        7px 7px 20px 0px rgba(0, 0, 0, 0.2), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
 .btn-7:before {
@@ -76,7 +126,9 @@ video {
     left: 0;
     top: 0;
     background: rgba(251, 75, 2, 1);
-    box-shadow: -7px -7px 20px 0px rgba(255, 255, 255, .9), -4px -4px 5px 0px rgba(255, 255, 255, .9), 7px 7px 20px 0px rgba(0, 0, 0, .2), 4px 4px 5px 0px rgba(0, 0, 0, .3);
+    box-shadow: -7px -7px 20px 0px rgba(255, 255, 255, 0.9),
+        -4px -4px 5px 0px rgba(255, 255, 255, 0.9),
+        7px 7px 20px 0px rgba(0, 0, 0, 0.2), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
 .btn-7 span:before {
@@ -92,4 +144,35 @@ video {
 }
 .btn-7 span:hover:after {
     width: 100%;
+}
+
+.btn-15 {
+    background: lightgreen;
+    border: none;
+    z-index: 1;
+    width: 60px;
+}
+.btn-15:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background-color: #663dff;
+    border-radius: 5px;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+        7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.btn-15:hover {
+    color: #fff;
+}
+.btn-15:hover:after {
+    left: 0;
+    width: 100%;
+}
+.btn-15:active {
+    top: 2px;
 }
