@@ -11,10 +11,17 @@ videoSelectBtn.onclick = getVideoSources;
 
 const startBtn = document.getElementById("startBtn");
 startBtn.onclick = e => {
-    videoElement.style.width = "70%";
-    mediaRecorder.start();
-    startBtn.classList.add('is-danger');
-    startBtn.innerText = 'Recording';
+    // Check whether a video source has been selected
+    // before changing the style of the button etc
+    if (Boolean(recordedChunks.length)) {
+        videoElement.style.width = "70%";
+        startBtn.style.width = "100px";
+        mediaRecorder.start();
+        startBtn.classList.add('is-danger');
+        startBtn.innerText = 'Recording';
+    } else {
+        alert("Please select a screen first!")
+    }
 };
 
 const stopBtn = document.getElementById("stopBtn");
@@ -23,6 +30,7 @@ stopBtn.onclick = e => {
     mediaRecorder.stop();
     startBtn.classList.remove('is-danger');
     startBtn.innerText = 'Start';
+    startBtn.style.width = "60px";
 };
 
 /**
@@ -50,7 +58,7 @@ async function getVideoSources() {
  * Change the videoSource window to record
  */
 async function selectSource(source) {
-    videoSelectBtn.innerText = source.name;
+    videoSelectBtn.innerHTML = `&nbsp;&nbsp;&nbsp;${source.name}&nbsp;&nbsp;&nbsp;`;
     const constraints = {
         audio: false,
         video: {
